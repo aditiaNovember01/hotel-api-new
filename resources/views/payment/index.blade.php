@@ -7,6 +7,9 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <a href="{{ route('payment.create') }}" class="btn btn-primary mb-3">Tambah Pembayaran</a>
     <div class="card">
         <div class="card-body">
@@ -28,7 +31,24 @@
                             <td>{{ $payment->id }}</td>
                             <td>{{ $payment->booking->id ?? '-' }}</td>
                             <td>{{ $payment->payment_method }}</td>
-                            <td>{{ $payment->payment_status }}</td>
+                            <td>
+                                <form action="{{ route('payment.update', $payment->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PUT')
+                                    <span class="badge 
+                                        {{ $payment->payment_status == 'pending' ? 'badge-warning' : '' }}
+                                        {{ $payment->payment_status == 'paid' ? 'badge-success' : '' }}
+                                        {{ $payment->payment_status == 'failed' ? 'badge-danger' : '' }}
+                                    ">
+                                        {{ ucfirst($payment->payment_status) }}
+                                    </span>
+                                    <select name="payment_status" onchange="this.form.submit()" class="form-control form-control-sm mt-1">
+                                        <option value="pending" {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="paid" {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>Paid</option>
+                                        <option value="failed" {{ $payment->payment_status == 'failed' ? 'selected' : '' }}>Failed</option>
+                                    </select>
+                                </form>
+                            </td>
                             <td>{{ $payment->payment_date }}</td>
                             <td>{{ $payment->total_paid }}</td>
                             <td>

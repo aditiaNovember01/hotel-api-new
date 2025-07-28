@@ -23,4 +23,14 @@ class PaymentViewController extends Controller
         $payment = Payment::findOrFail($id);
         return view('payment.edit', compact('payment'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $payment = Payment::findOrFail($id);
+        if ($request->has('payment_status')) {
+            $payment->payment_status = $request->input('payment_status');
+            $payment->save();
+        }
+        return redirect()->route('payment.index')->with('success', 'Status pembayaran berhasil diupdate!');
+    }
 } 
