@@ -321,6 +321,11 @@ return [
             'icon' => 'fas fa-users',
         ],
         [
+            'text' => 'Room',
+            'url' => 'room',
+            'icon' => 'fas fa-bed',
+        ],
+        [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',

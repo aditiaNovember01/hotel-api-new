@@ -7,3 +7,4 @@ Route::get('/', function () {
 });
 
 Route::resource('user', App\Http\Controllers\UserViewController::class)->except(['show', 'destroy']);
+Route::resource('room', App\Http\Controllers\RoomViewController::class)->except(['show', 'destroy']);
