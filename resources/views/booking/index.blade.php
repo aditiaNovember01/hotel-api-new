@@ -7,6 +7,9 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <a href="{{ route('booking.create') }}" class="btn btn-primary mb-3">Tambah Booking</a>
     <div class="card">
         <div class="card-body">
@@ -32,7 +35,17 @@
                             <td>{{ $booking->check_in_date }}</td>
                             <td>{{ $booking->check_out_date }}</td>
                             <td>{{ $booking->total_price }}</td>
-                            <td>{{ $booking->status }}</td>
+                            <td>
+                                <form action="{{ route('booking.update', $booking->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PUT')
+                                    <select name="status" onchange="this.form.submit()" class="form-control form-control-sm">
+                                        <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="confirmed" {{ $booking->status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
+                                        <option value="cancelled" {{ $booking->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                    </select>
+                                </form>
+                            </td>
                             <td>
                                 <a href="{{ route('booking.edit', $booking->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             </td>
