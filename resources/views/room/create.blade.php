@@ -7,9 +7,12 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <div class="card">
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Nama</label>
@@ -28,8 +31,8 @@
                     <input type="number" name="max_guest" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>URL Gambar</label>
-                    <input type="text" name="image_url" class="form-control">
+                    <label>Gambar</label>
+                    <input type="file" name="image" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>

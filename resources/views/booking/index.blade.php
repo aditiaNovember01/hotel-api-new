@@ -39,7 +39,14 @@
                                 <form action="{{ route('booking.update', $booking->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('PUT')
-                                    <select name="status" onchange="this.form.submit()" class="form-control form-control-sm">
+                                    <span class="badge 
+                                        {{ $booking->status == 'pending' ? 'badge-warning' : '' }}
+                                        {{ $booking->status == 'confirmed' ? 'badge-success' : '' }}
+                                        {{ $booking->status == 'cancelled' ? 'badge-danger' : '' }}
+                                    ">
+                                        {{ ucfirst($booking->status) }}
+                                    </span>
+                                    <select name="status" onchange="this.form.submit()" class="form-control form-control-sm mt-1">
                                         <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="confirmed" {{ $booking->status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
                                         <option value="cancelled" {{ $booking->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
