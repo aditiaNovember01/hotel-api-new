@@ -7,9 +7,12 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <div class="card">
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{ route('user.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
