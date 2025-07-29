@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // Call all seeders in the correct order
         $this->call([
+            AdminSeeder::class,
             UserSeeder::class,
             RoomSeeder::class,
             BookingSeeder::class,
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->command->info('Semua data sample berhasil ditambahkan!');
-        $this->command->info('Admin login: admin@hotel.com / admin123');
-        $this->command->info('User login: john@example.com / password123');
+        $this->command->info('Admin login: admin@hotel.com / password');
+        $this->command->info('Manager login: manager@hotel.com / password');
+        $this->command->info('User login: john@example.com / password');
     }
 }

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Hotel Management System',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -53,7 +53,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Admin Panel Logo
+    | Logo
     |--------------------------------------------------------------------------
     |
     | Here you can change the logo of your admin panel.
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Hotel</b>MS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Hotel Management System',
 
     /*
     |--------------------------------------------------------------------------
@@ -154,8 +154,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -309,6 +309,36 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        [
+            'type' => 'user-menu',
+            'topnav_right' => true,
+            'dropdown_menu_classes' => 'dropdown-menu dropdown-menu-lg dropdown-menu-right',
+            'items' => [
+                [
+                    'type' => 'header',
+                    'text' => 'Account',
+                ],
+                [
+                    'text' => 'Profile',
+                    'url' => '#',
+                    'icon' => 'fas fa-user',
+                ],
+                [
+                    'text' => 'Settings',
+                    'url' => '#',
+                    'icon' => 'fas fa-cogs',
+                ],
+                [
+                    'type' => 'divider',
+                ],
+                [
+                    'text' => 'Logout',
+                    'url' => '#',
+                    'icon' => 'fas fa-sign-out-alt',
+                    'onclick' => 'event.preventDefault(); document.getElementById(\'logout-form\').submit();',
+                ],
+            ],
+        ],
 
         // Sidebar items:
         [
@@ -319,6 +349,11 @@ return [
             'text' => 'User',
             'url' => 'user',
             'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'User Report',
+            'url' => 'user/report',
+            'icon' => 'fas fa-chart-bar',
         ],
         [
             'text' => 'Room',
@@ -334,6 +369,11 @@ return [
             'text' => 'Payment',
             'url' => 'payment',
             'icon' => 'fas fa-money-check-alt',
+        ],
+        [
+            'text' => 'Laporan Keuangan',
+            'url' => 'payment/report',
+            'icon' => 'fas fa-chart-line',
         ],
     ],
 

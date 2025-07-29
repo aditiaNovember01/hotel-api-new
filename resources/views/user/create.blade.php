@@ -7,9 +7,12 @@
 @endsection
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <div class="card">
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{ route('user.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Nama</label>
